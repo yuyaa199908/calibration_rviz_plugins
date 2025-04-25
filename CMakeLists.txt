@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(simple_tf_controller)
+project(calibration_rviz_plugins)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -31,11 +31,11 @@ include_directories(src ${OGRE_INCLUDE_DIRS} ${OGRE_INCLUDE_DIRS}/Paging)
 set(CMAKE_AUTOMOC ON)
 
 add_library(${PROJECT_NAME} SHARED
-  src/close_all_tool.cpp
-  src/twist_panel.cpp
-  src/point_tool.cpp
-  src/point_display.cpp
-  src/log_display.cpp
+  # src/close_all_tool.cpp
+  src/panel_tf.cpp
+  # src/point_tool.cpp
+  # src/point_display.cpp
+  # src/log_display.cpp
 )
 
 ament_target_dependencies(${PROJECT_NAME} 

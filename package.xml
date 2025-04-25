@@ -3,7 +3,7 @@
 <package format="3">
   <name>calibration_rviz_plugins</name>
   <version>0.0.0</version>
-  <description>simple tf controller</description>
+  <description>calibration_rviz_plugins</description>
   <maintainer email="yuyaa199908@gmail.com">kotakku</maintainer>
   <license>MIT</license>
 
