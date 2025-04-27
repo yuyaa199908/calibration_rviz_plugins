@@ -25,6 +25,11 @@ find_package(pluginlib REQUIRED)
 find_package(Qt5 REQUIRED COMPONENTS Widgets)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+## addon
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(tf2_msgs REQUIRED)
+
 
 include_directories(src ${OGRE_INCLUDE_DIRS} ${OGRE_INCLUDE_DIRS}/Paging)
 
@@ -45,6 +50,10 @@ ament_target_dependencies(${PROJECT_NAME}
 
   std_msgs
   geometry_msgs
+
+  tf2
+  tf2_ros
+  tf2_msgs
 )
 
 target_link_libraries(${PROJECT_NAME} Qt5::Widgets)

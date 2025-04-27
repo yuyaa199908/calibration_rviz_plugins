@@ -8,6 +8,11 @@
 #include <QSlider>
 #endif
 #include <std_msgs/msg/string.hpp>
+#include <math.h> /* M_PI */
+#include <vector>
+#include <tf2_ros/transform_broadcaster.h>
+#include <tf2_ros/static_transform_broadcaster.h>
+#include <tf2/LinearMath/Quaternion.h>
 
 namespace calibration_rviz_plugins
 {
@@ -33,6 +38,7 @@ public:
     double value_;
     double min_;
     double max_;
+    bool is_updated_;
 
     virtual void update_slider_value(int x);
     virtual void update_spin_value(double x);
@@ -45,19 +51,33 @@ class PanelTF : public rviz_common::Panel
     Q_OBJECT
 public:
     PanelTF(QWidget *parent = nullptr);
-
     virtual void onInitialize();
     virtual void load(const rviz_common::Config &config);
     virtual void save(rviz_common::Config config) const;
+    virtual void send_tf();
+    bool is_sent;
 
 public Q_SLOTS:
     void tick();
 
-
 protected:
-    const int scale = 1000;
     rclcpp::Node::SharedPtr nh_;
-    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr string_publisher_;
+    // rclcpp::Publisher<std_msgs::msg::String>::SharedPtr string_publisher_;
+
+    std::unique_ptr<tf2_ros::StaticTransformBroadcaster> tf_broadcaster_;
+    QLineEdit* edit_parent_;
+    QLineEdit* edit_child_;
+    LabeledSliderWidget* labeled_slider_tx;
+    LabeledSliderWidget* labeled_slider_ty;
+    LabeledSliderWidget* labeled_slider_tz;
+    LabeledSliderWidget* labeled_slider_rx; 
+    LabeledSliderWidget* labeled_slider_ry;
+    LabeledSliderWidget* labeled_slider_rz;
+    QCheckBox* check_enable_;
+    std::vector<LabeledSliderWidget*> labeled_sliders;
+
+
+
 };
 
 }
